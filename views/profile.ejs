@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Profile - New Calendar</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <header>
+    <nav>
+      <div class="logo">New Calendar</div>
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/user/dashboard">Dashboard</a></li>
+        <li><a href="/auth/logout">Logout</a></li>
+      </ul>
+    </nav>
+  </header>
+  
+  <main class="container">
+    <section class="profile">
+      <h1>Your Profile</h1>
+      
+      <div class="profile-details">
+        <div class="profile-item">
+          <h3>Username</h3>
+          <p><%= user.username %></p>
+        </div>
+        
+        <div class="profile-item">
+          <h3>Email</h3>
+          <p><%= user.email %></p>
+        </div>
+        
+        <div class="profile-item">
+          <h3>Public Profile</h3>
+          <p>
+            <a href="/user/<%= user.username %>" class="btn secondary">View Public Profile</a>
+          </p>
+        </div>
+      </div>
+      
+      <div class="profile-actions">
+        <h2>Account Actions</h2>
+        <button class="btn warning">Change Password</button>
+        <!-- Add more account actions as needed -->
+      </div>
+    </section>
+  </main>
+  
+  <footer>
+    <p>&copy; 2025 New Calendar. All rights reserved.</p>
+  </footer>
+
+  <% if (process.env.NODE_ENV !== 'production') { %>
+    <script>
+      // Debug logging
+      console.log('Profile page loaded for user:', '<%= user.username %>', 'at:', new Date().toISOString());
+      
+      // Add event listener to track user actions
+      document.querySelector('.btn.warning').addEventListener('click', function() {
+        console.log('Change password clicked');
+        alert('Password change functionality coming soon!');
+      });
+      
+      // Add event listener for public profile view
+      document.querySelector('.btn.secondary').addEventListener('click', function() {
+        console.log('Public profile view clicked - navigating to:', '/user/<%= user.username %>');
+      });
+    </script>
+  <% } %>
+</body>
+</html>
