@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register - New Calendar</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <header>
+    <nav>
+      <div class="logo">New Calendar</div>
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/auth/login">Login</a></li>
+      </ul>
+    </nav>
+  </header>
+  
+  <main class="container">
+    <section class="auth-form">
+      <h1>Create an Account</h1>
+      
+      <% if (locals.error) { %>
+        <div class="alert error">
+          <%= error %>
+        </div>
+      <% } %>
+      
+      <form action="/auth/register" method="POST">
+        <div class="form-group">
+          <label for="username">Username</label>
+          <input type="text" id="username" name="username" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="confirmPassword">Confirm Password</label>
+          <input type="password" id="confirmPassword" name="confirmPassword" required>
+        </div>
+        
+        <button type="submit" class="btn primary full-width">Register</button>
+      </form>
+      
+      <p class="auth-redirect">Already have an account? <a href="/auth/login">Login</a></p>
+    </section>
+  </main>
+  
+  <footer>
+    <p>&copy; 2025 New Calendar. All rights reserved.</p>
+  </footer>
+
+  <% if (process.env.NODE_ENV !== 'production') { %>
+    <script>
+      // Debug logging
+      console.log('Register page loaded at:', new Date().toISOString());
+      
+      // Form validation and submission tracking
+      document.querySelector('form').addEventListener('submit', function(e) {
+        const username = document.getElementById('username').value;
+        const email = document.getElementById('email').value;
+        
+        console.log('Form submission attempt:', {
+          username,
+          email,
+          time: new Date().toISOString()
+        });
+      });
+    </script>
+  <% } %>
+</body>
+</html>
