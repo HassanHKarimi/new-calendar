@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>New Calendar</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <header>
+    <nav>
+      <div class="logo">New Calendar</div>
+      <ul>
+        <% if (locals.user) { %>
+          <li><a href="/user/dashboard">Dashboard</a></li>
+          <li><a href="/user/profile">Profile</a></li>
+          <li><a href="/auth/logout">Logout</a></li>
+        <% } else { %>
+          <li><a href="/auth/login">Login</a></li>
+          <li><a href="/auth/register">Register</a></li>
+        <% } %>
+      </ul>
+    </nav>
+  </header>
+  
+  <main class="container">
+    <section class="hero">
+      <h1>Welcome to New Calendar</h1>
+      <p>Organize your life with our simple and intuitive calendar app.</p>
+      <div class="cta-buttons">
+        <% if (!locals.user) { %>
+          <a href="/auth/register" class="btn primary">Get Started</a>
+          <a href="/auth/login" class="btn secondary">Login</a>
+        <% } else { %>
+          <a href="/user/dashboard" class="btn primary">Go to Dashboard</a>
+        <% } %>
+      </div>
+    </section>
+  </main>
+  
+  <footer>
+    <p>&copy; 2025 New Calendar. All rights reserved.</p>
+  </footer>
+</body>
+</html>
