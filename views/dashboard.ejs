@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard - New Calendar</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <header>
+    <nav>
+      <div class="logo">New Calendar</div>
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/user/profile">Profile</a></li>
+        <li><a href="/auth/logout">Logout</a></li>
+      </ul>
+    </nav>
+  </header>
+  
+  <main class="container dashboard">
+    <h1>Welcome, <%= user.username %>!</h1>
+    
+    <div class="dashboard-grid">
+      <aside class="sidebar">
+        <h2>Quick Actions</h2>
+        <ul>
+          <li><a href="#" id="create-event">Create Event</a></li>
+          <li><a href="#" id="view-events">View All Events</a></li>
+          <li><a href="/user/<%= user.username %>" id="view-profile">View Public Profile</a></li>
+          <li><a href="/user/profile" id="manage-profile">Manage Profile</a></li>
+        </ul>
+      </aside>
+      
+      <section class="calendar-section">
+        <h2>Your Calendar</h2>
+        <div class="calendar-placeholder">
+          <!-- Calendar will be implemented later -->
+          <p>Calendar view coming soon!</p>
+        </div>
+      </section>
+    </div>
+  </main>
+  
+  <footer>
+    <p>&copy; 2025 New Calendar. All rights reserved.</p>
+  </footer>
+
+  <% if (process.env.NODE_ENV !== 'production') { %>
+    <script>
+      // Debug logging
+      console.log('Dashboard loaded for user:', '<%= user.username %>', 'at:', new Date().toISOString());
+      
+      // Add event listeners to track interactions
+      document.getElementById('create-event').addEventListener('click', function(e) {
+        e.preventDefault();
+        console.log('Create event clicked');
+        alert('Event creation coming soon!');
+      });
+      
+      document.getElementById('view-events').addEventListener('click', function(e) {
+        e.preventDefault();
+        console.log('View events clicked');
+        alert('Event viewing coming soon!');
+      });
+      
+      document.getElementById('view-profile').addEventListener('click', function(e) {
+        console.log('View profile clicked - navigating to public profile');
+      });
+      
+      document.getElementById('manage-profile').addEventListener('click', function(e) {
+        console.log('Manage profile clicked - navigating to profile management');
+      });
+    </script>
+  <% } %>
+</body>
+</html>
